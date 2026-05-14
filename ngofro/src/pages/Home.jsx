@@ -245,14 +245,14 @@ export function AutoCarousel() {
 
       {/* Description Text */}
       <div className="mt-8 space-y-4">
-        <h3 className="text-gray-700 text-center text-2xl w-6xl mx-auto ">
+        <h3 className="text-gray-700 text-center text-lg md:text-2xl md:w-6xl mx-auto ">
           Established in 2002, Smile Foundation is an Indian development
           organization, impacting the lives of over 20 lakh children and their
           families every year. We have more than 400 projects on education,
           healthcare, livelihood, and women empowerment in over 2,000 remote
           villages and urban slums across 27 states of India.
         </h3>
-        <h3 className="text-gray-700 text-center text-2xl w-6xl mx-auto ">
+        <h3 className="text-gray-700 text-center text-lg md:text-2xl md:w-6xl mx-auto ">
           Smile Foundation works as a catalyst in the cycle of change,
           complementing and supplementing government efforts (view details) to
           achieve the Sustainable Development Goals. We sensitize and partner
