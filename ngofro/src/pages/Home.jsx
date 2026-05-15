@@ -125,10 +125,10 @@ export function Hero() {
     return () => clearInterval(timer);
   }, [images.length]);
   return (
-    <section className="relative mt-24 bg-green-50 overflow-hidden py-20">
+    <section className="relative mt-20 bg-green-50 overflow-hidden py-20">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
         {/* Text Content */}
-        <div className="md:w-1/2 flex flex-col justify-center">
+        <div className="md:w-1/2 w-md flex flex-col justify-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl text-gray-900 mb-6 w-xl">
             We Help all people Around <span className="text-green-600 font-bold block sm:inline"> The world</span>
           </h1>
