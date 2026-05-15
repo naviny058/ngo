@@ -112,7 +112,7 @@ function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 h-screen bg-orange-600 text-white flex flex-col">
+    <aside className="w-64 h-screen bg-green-600 text-white flex flex-col">
       <div className="p-4 text-xl font-bold border-b border-gray-700">
         NGO Dashboard
       </div>
