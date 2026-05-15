@@ -242,29 +242,47 @@ export function AutoCarousel() {
       </div>
 
       {/* Description Text */}
-      <div className="mt-8 space-y-4">
-        <h3 className="text-gray-700 text-center text-lg md:text-2xl md:w-6xl mx-auto ">
+      <div className="mt-8 space-y-6 px-4 sm:px-6 lg:px-8">
+        <p className="text-gray-700 text-center text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed">
           Established in 2002, Smile Foundation is an Indian development
           organization, impacting the lives of over 20 lakh children and their
           families every year. We have more than 400 projects on education,
           healthcare, livelihood, and women empowerment in over 2,000 remote
           villages and urban slums across 27 states of India.
-        </h3>
-        <h3 className="text-gray-700 text-center text-lg md:text-2xl md:w-6xl mx-auto ">
+        </p>
+
+        <p className="text-gray-700 text-center text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed">
           Smile Foundation works as a catalyst in the cycle of change,
           complementing and supplementing government efforts (view details) to
           achieve the Sustainable Development Goals. We sensitize and partner
           with like-minded institutions and individuals to implement high-impact
           programmes that enable access, enhance quality and help bring long
           term behavioural change at the grassroots.
-        </h3>
+        </p>
 
-        <a href="#" className="flex items-center gap-2 text-green-500 hover:text-green-700 w-52 text-2xl justify-center font-semibold transition mx-auto">
-          read more
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-          </svg>
-        </a>
+        <div className="pt-2">
+          <a
+            href="#"
+            className="group flex items-center justify-center gap-2 text-green-500 hover:text-green-700 w-max mx-auto text-lg md:text-xl font-semibold transition-all duration-300"
+          >
+            Read more
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   );
@@ -367,7 +385,7 @@ export function LatestActivities() {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                <h3 className="text-2xl font-semibold text-green-600 mb-3">
                   {activity.title}
                 </h3>
 
