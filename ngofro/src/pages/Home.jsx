@@ -4,7 +4,7 @@ import {
   ArrowBigRight
 } from "lucide-react";
 import { RiFacebookLine, RiInstagramLine, RiMailAiLine, RiMailFill, RiMailLine, RiTwitterXLine } from "@remixicon/react";
-
+import logo from '../assets/logo.png'
 export default function Home() {
   return (
     <>
@@ -20,14 +20,13 @@ export default function Home() {
 }
 const navItems = [
   "About Us",
-  "Our Team",
-  "Apply Now",
-  "Events & News",
-  "Gallery",
+  // "Our Team",
+  // "Apply Now",
+  // "Events & News",
+  // "Gallery",
+  "Contact Us",
+  "Pages",
   "Support Us",
-  "Certifications",
-  "Contact",
-  "Login",
 ];
 
 export function Header() {
@@ -38,11 +37,9 @@ export function Header() {
       {/* Header */}
       <header className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-24">
             {/* NGO Text */}
-            <div className="text-2xl font-bold text-orange-500">
-              OUR NGO
-            </div>
+            <img src={logo} alt="" className="h-20" />
             {/* Mobile Hamburger */}
             <div className="md:hidden">
               <button
@@ -57,17 +54,18 @@ export function Header() {
             <div className="hidden md:block w-20"></div>
 
             {/* Desktop Menu */}
-            <nav className="hidden md:flex items-center gap-6 text-lg font-medium text-gray-700">
+            <nav className="hidden md:flex items-center gap-7 text-xl">
               {navItems.map((item) => (
                 <a
                   key={item}
                   href="#"
-                  className="hover:text-orange-500 transition"
+                  className="hover:text-green-500 transition"
                 >
                   {item}
                 </a>
               ))}
             </nav>
+            <button className="bg-green-500 hidden md:flex py-2 text-lg px-6 rounded-md text-white font-bold">Login</button>
           </div>
         </div>
       </header>
@@ -81,12 +79,12 @@ export function Header() {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-xl transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 left-0 h-full w-full bg-white z-50 shadow-xl transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
           }`}
       >
         {/* Sidebar Header */}
         <div className="flex items-center justify-between px-5 h-16 border-b">
-          <h2 className="text-xl font-bold text-orange-600">OUR NGO</h2>
+          <h2 className="text-xl font-bold text-green-500">OUR NGO</h2>
 
           <button onClick={() => setIsOpen(false)}>
             <X size={26} />
@@ -99,7 +97,7 @@ export function Header() {
             <a
               key={item}
               href="#"
-              className="text-gray-700 font-medium hover:text-blue-600 transition"
+              className="text-gray-700 font-medium hover:text-green-600 transition"
               onClick={() => setIsOpen(false)}
             >
               {item}
@@ -261,7 +259,7 @@ export function AutoCarousel() {
           term behavioural change at the grassroots.
         </h3>
 
-        <a href="#" className="flex items-center gap-2 text-orange-600 hover:text-orange-800 w-52 text-2xl justify-center font-semibold transition mx-auto">
+        <a href="#" className="flex items-center gap-2 text-green-500 hover:text-green-700 w-52 text-2xl justify-center font-semibold transition mx-auto">
           read more
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
@@ -274,40 +272,44 @@ export function AutoCarousel() {
 
 export function AboutUs() {
   return (
-    <section id="about" className="bg-white py-16 my-20">
-      <div className="container mx-auto max-w-7xl px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        {/* Image Section */}
-        <div className="w-full">
-          <img
-            src="https://www.pratham.org/wp-content/uploads/2024/12/5.-ASER.jpg"
-            alt="About NGOConnect"
-            className="rounded-xl shadow-lg w-lg"
-          />
-        </div>
+    <section id="about" className="bg-gray-50 py-20">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* Text Content */}
-        <div>
-          <h2 className="text-3xl font-bold text-orange-500 mb-4">About Us</h2>
-          <p className="text-lg text-gray-700">
-            <span className="block mb-4">
-              <strong>NGOConnect</strong> is dedicated to bridging the gap
-              between NGOs and individuals who want to make a difference.
-            </span>
-            <span className="block mb-4">
-              Our platform enables seamless connections between volunteers and
-              nonprofits in need, while helping donors support meaningful
-              causes with transparency and impact.
-            </span>
-            <span className="block">
-              Whether you're looking to donate, volunteer, or simply learn
-              about initiatives in your community, NGOConnect empowers you to
-              take action where it matters most.
-            </span>
-          </p>
+        {/* Section Heading */}
+        <h2 className="text-center text-4xl md:text-5xl font-extrabold text-green-500 mb-12 lg:mb-16 tracking-tight">
+          About Us
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* Image Section */}
+          <div className="w-full flex justify-center lg:justify-end">
+            <img
+              src="https://www.pratham.org/wp-content/uploads/2024/12/5.-ASER.jpg"
+              alt="About NGOConnect"
+              className="rounded-2xl shadow-xl w-full max-w-md lg:max-w-lg object-cover transition-shadow hover:shadow-2xl duration-300"
+            />
+          </div>
+
+          {/* Text Content */}
+          <div className="flex flex-col space-y-6 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-xl md:text-2xl text-gray-800 font-medium leading-snug">
+              <span className="text-green-600 font-bold">NGOConnect</span> is dedicated to bridging the gap between NGOs and individuals who want to make a difference.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Our platform enables seamless connections between volunteers and nonprofits in need, while helping donors support meaningful causes with transparency and impact.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Whether you're looking to donate, volunteer, or simply learn about initiatives in your community, NGOConnect empowers you to take action where it matters most.
+            </p>
+          </div>
+
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 const activities = [
@@ -336,12 +338,12 @@ const activities = [
 
 export function LatestActivities() {
   return (
-    <section className="w-full py-16 bg-gray-50">
+    <section className="w-full py-16">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
 
         {/* Section Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-5xl font-bold text-orange-500">
+          <h2 className="text-5xl font-bold text-green-500">
             Latest Activities
           </h2>
           <p className="text-gray-500 mt-3">
@@ -384,7 +386,7 @@ export function LatestActivities() {
 
 export function Footer() {
   return (
-    <footer className="bg-orange-500 text-white mt-10">
+    <footer className="bg-green-500 text-white mt-10">
       <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 
