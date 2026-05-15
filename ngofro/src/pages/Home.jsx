@@ -5,12 +5,15 @@ import {
 } from "lucide-react";
 import { RiFacebookLine, RiInstagramLine, RiMailAiLine, RiMailFill, RiMailLine, RiTwitterXLine } from "@remixicon/react";
 import logo from '../assets/logo.png'
+import girl from '../assets/girl.png'
+import second from '../assets/second.png'
+
 export default function Home() {
   return (
     <>
       <div>
         <Header />
-        <AutoCarousel />
+        <Hero />
         <AboutUs />
         <LatestActivities />
         <Footer />
@@ -109,183 +112,64 @@ export function Header() {
   );
 }
 
-const slides = [
-  {
-    id: 1,
-    title: "Distributing goods",
-    image:
-      "https://plus.unsplash.com/premium_photo-1733306621909-1d63c088a93e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fG5nb3xlbnwwfHwwfHx8MA%3D%3D",
-  },
-  {
-    id: 2,
-    title: "Working together",
-    image:
-      "https://images.unsplash.com/photo-1774504798113-a03e2aa24789?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fG5nb3xlbnwwfHwwfHx8MA%3D%3D",
-  },
-  {
-    id: 3,
-    title: "Cutting Crops",
-    image:
-      "https://images.unsplash.com/photo-1708592190055-b9a311e4fcd0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fG5nb3xlbnwwfHwwfHx8MA%3D%3D",
-  },
-];
-
-export function AutoCarousel() {
-  const [current, setCurrent] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-
-  // Auto slide every 3 seconds (pauses if user is dragging)
+export function Hero() {
+  const images = [logo, girl, second];
+  const [currentImage, setCurrentImage] = useState(0);
   useEffect(() => {
-    if (isDragging) return;
+    // Set up the interval
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 2000); // 2000ms = 2 seconds
 
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [current, isDragging]);
-
-  const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  // --- Mouse/Touch Swipe Logic ---
-  const handleDragStart = (e) => {
-    setIsDragging(true);
-    const clientX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
-    setStartX(clientX);
-  };
-
-  const handleDragEnd = (e) => {
-    if (!isDragging) return;
-    setIsDragging(false);
-
-    const clientX = e.type.includes("mouse") ? e.clientX : e.changedTouches[0].clientX;
-    const dragDistance = startX - clientX;
-
-    if (dragDistance > 50) {
-      nextSlide(); // Swiped left
-    } else if (dragDistance < -50) {
-      prevSlide(); // Swiped right
-    }
-  };
-
+    // Clean up the timer when the component unmounts
+    return () => clearInterval(timer);
+  }, [images.length]);
   return (
-    <div className="w-full mx-auto py-4">
+    <section className="relative mt-24 bg-green-50 overflow-hidden py-20">
+      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+        {/* Text Content */}
+        <div className="md:w-1/2 flex flex-col justify-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl text-gray-900 mb-6 w-xl">
+            We Help all people Around <span className="text-green-600 font-bold block sm:inline"> The world</span>
+          </h1>
+          <p className="text-gray-600 text-base sm:text-lg md:text-xl/relaxed font-normal mb-8 max-w-xl">
+            With a presence on every continent, we unite people, resources, and ideas to drive meaningful change in areas such as education, health, sustainability, and human rights.
+          </p>
+          <div>
+            <button className="bg-green-600 text-white px-8 py-3.5 rounded-full font-semibold hover:bg-green-700 transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-green-200">
+              Donate
+            </button>
+          </div>
+        </div>
 
-      {/* Carousel Container (Added 'relative' and 'group') */}
-      <div className="relative w-full overflow-hidden rounded-lg shadow-2xl group">
-
-        {/* Slides Track */}
-        <div
-          className="flex transition-transform duration-700 ease-in-out cursor-grab active:cursor-grabbing"
-          style={{
-            transform: `translateX(-${current * 100}%)`,
-          }}
-          onMouseDown={handleDragStart}
-          onMouseUp={handleDragEnd}
-          onMouseLeave={handleDragEnd}
-          onTouchStart={handleDragStart}
-          onTouchEnd={handleDragEnd}
-        >
-          {slides.map((slide) => (
-            <div key={slide.id} className="min-w-full relative select-none">
+        {/* Image Slider Container */}
+        <div className="md:w-1/2 flex justify-center w-full">
+          <div className="relative w-full max-w-md h-[400px] flex justify-center items-center">
+            {images.map((img, index) => (
               <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-[600px] object-cover pointer-events-none"
+                key={index}
+                src={img}
+                alt={`ngo ${index + 1}`}
+                className={`absolute rounded-tl-[100px] rounded-br-[100px] inset-0 w-full h-full object-cover shadow-2xl transition-all duration-700 ease-in-out ${index === currentImage ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+                  }`}
               />
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/30 flex items-end p-6">
-                <h2 className="text-white text-3xl font-bold">{slide.title}</h2>
-              </div>
+            ))}
+
+            {/* Visual Indicator Dots */}
+            <div className="absolute -bottom-8 flex gap-2">
+              {images.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-2 rounded-full transition-all duration-300 ${index === currentImage ? 'bg-green-600 w-5' : 'bg-green-200 w-2'
+                    }`}
+                />
+              ))}
             </div>
-          ))}
-        </div>
-
-        {/* Left Arrow */}
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition duration-300"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
-        </button>
-
-        {/* Right Arrow */}
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition duration-300"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </button>
-
-        {/* Dots */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrent(index)}
-              className={`w-3 h-3 rounded-full transition ${current === index ? "bg-white" : "bg-white/50"
-                }`}
-            />
-          ))}
+          </div>
         </div>
       </div>
-
-      {/* Description Text */}
-      <div className="mt-8 space-y-6 px-4 sm:px-6 lg:px-8">
-        <p className="text-gray-700 text-center text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed">
-          Established in 2002, Smile Foundation is an Indian development
-          organization, impacting the lives of over 20 lakh children and their
-          families every year. We have more than 400 projects on education,
-          healthcare, livelihood, and women empowerment in over 2,000 remote
-          villages and urban slums across 27 states of India.
-        </p>
-
-        <p className="text-gray-700 text-center text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed">
-          Smile Foundation works as a catalyst in the cycle of change,
-          complementing and supplementing government efforts (view details) to
-          achieve the Sustainable Development Goals. We sensitize and partner
-          with like-minded institutions and individuals to implement high-impact
-          programmes that enable access, enhance quality and help bring long
-          term behavioural change at the grassroots.
-        </p>
-
-        <div className="pt-2">
-          <a
-            href="#"
-            className="group flex items-center justify-center gap-2 text-green-500 hover:text-green-700 w-max mx-auto text-lg md:text-xl font-semibold transition-all duration-300"
-          >
-            Read more
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  );
+    </section>
+  )
 }
 
 export function AboutUs() {
