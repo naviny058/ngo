@@ -126,13 +126,13 @@ export function Hero() {
   }, [images.length]);
   return (
     <section className="relative mt-20 bg-green-50 overflow-hidden py-20">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12 justify-between">
         {/* Text Content */}
-        <div className="md:w-1/2 w-md flex flex-col justify-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl text-gray-900 mb-6 w-xl">
-            We Help all people Around <span className="text-green-600 font-bold block sm:inline"> The world</span>
+        <div className="md:w-[440px] md:ml-10">
+          <h1 className="text-3xl font-bold md:text-6xl">
+            We Help all people  <span className="text-green-600 font-bold block sm:inline">Around The world</span>
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg md:text-xl/relaxed font-normal mb-8 max-w-xl">
+          <p className="my-6 text-gray-950 text-sm md:text-lg">
             With a presence on every continent, we unite people, resources, and ideas to drive meaningful change in areas such as education, health, sustainability, and human rights.
           </p>
           <div>
@@ -144,7 +144,7 @@ export function Hero() {
 
         {/* Image Slider Container */}
         <div className="md:w-1/2 flex justify-center w-full">
-          <div className="relative w-full max-w-md h-[400px] flex justify-center items-center">
+          <div className="relative w-full max-w-md h-72 md:h-[400px] flex justify-center items-center">
             {images.map((img, index) => (
               <img
                 key={index}
